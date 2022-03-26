@@ -1,23 +1,23 @@
 package com.disasterrelief.disaster.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-@Document(collection="UserEntity")
-public class UserEntity {
+import org.mongodb.morphia.annotations.Entity;
 
-	@Id
-	private int userId;
+import com.disasterrelief.disaster.UserType;
+@Entity("users")
+public class UserEntity extends BaseEntity{
+
+	private static final long serialVersionUID = 8484028561368492736L;
 	private String userName;
 	private String email;
 	private String mobileNo;
+	private UserType type;
 	private CountryEntity countryId;
-
-	public int getUserId() {
-		return userId;
+	public UserType getType() {
+		return type;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setType(UserType type) {
+		this.type = type;
 	}
 
 	public String getUserName() {
@@ -50,52 +50,6 @@ public class UserEntity {
 
 	public void setCountryId(CountryEntity countryId) {
 		this.countryId = countryId;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", email=" + email + ", mobileNo=" + mobileNo
-				+ "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((mobileNo == null) ? 0 : mobileNo.hashCode());
-		result = prime * result + userId;
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserEntity other = (UserEntity) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (mobileNo == null) {
-			if (other.mobileNo != null)
-				return false;
-		} else if (!mobileNo.equals(other.mobileNo))
-			return false;
-		if (userId != other.userId)
-			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
-		return true;
 	}
 
 }
