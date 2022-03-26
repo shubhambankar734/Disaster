@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.disasterrelief.*"})
 public class AppConfigurer implements WebMvcConfigurer{
-
+	
 	
 	@Bean
     public TilesConfigurer tilesConfigurer() {
